@@ -10,11 +10,10 @@ from sklearn.metrics import mean_squared_error, r2_score
 
 data = load_diabetes()
 df = pd.DataFrame(data.data, columns=data.feature_names)
-df['target'] = data.target
 
-X = df.drop('target', axis=1)
-y = df['target']
 
+X = df.iloc[:, :-1]
+y = df.iloc[:, -1]
 
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42
@@ -60,10 +59,6 @@ plt.xlabel("Actual Values")
 plt.ylabel("Predicted Values")
 plt.title("Actual vs Predicted Comparison")
 plt.legend()
-
 plt.show()
-
-
-
 plt.show()
 
